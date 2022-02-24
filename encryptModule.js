@@ -4,7 +4,7 @@ const crypto = require('crypto');
 module.exports =
 {
 	//signup
-	encryptPassword : async (password) => {
+	encryptPassword: async (password) => {
 		return new Promise(async (resolve, rejects) => {
 			try {
 				const salt = (await crypto.randomBytes(32)).toString('hex');
@@ -21,7 +21,7 @@ module.exports =
 	},
 
 	//signin
-	encryptForLogin : async (__Password, __salt) => {
+	encryptForLogin: async (__Password, __salt) => {
 		return new Promise(async (resolve, rejects) => {
 			try {
 				crypto.pbkdf2(__Password, __salt, 1, 32, 'sha512', (err, deriveKey) => {
@@ -34,4 +34,5 @@ module.exports =
 				rejects(err);
 			}
 		})
+	}
 }
